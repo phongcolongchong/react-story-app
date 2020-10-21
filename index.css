@@ -6,6 +6,7 @@ html, body {
 .app-container {
   width: 90%;
   margin: 20px auto 0;
+  padding-bottom: 40px;
 }
 
 .app-main-navigation {
@@ -14,6 +15,7 @@ html, body {
 
 .site-page-header {
   border: 1px solid rgb(235, 237, 240);
+  box-shadow: 3px 6px 6px rgba(0, 0, 0, 0.1);
 }
 
 .post-inputs-container {
@@ -24,6 +26,23 @@ html, body {
   margin-bottom: 20px;
 }
 
-.post-input-button {
+/* .post-input-button {
   float: right;
+} */
+
+.post-input-image {
+  display: flex;
+  align-items: center;
+}
+
+.article-content-container {
+  display: flex;
+}
+
+.post-snippet-container {
+  box-shadow: 3px 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+.post-snippet-container:hover {
+  box-shadow: 3px 6px 6px rgba(0, 0, 0, 0.2);
 }

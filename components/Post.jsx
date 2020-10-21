@@ -6,6 +6,7 @@ function Post(props) {
   console.log("Post -> props", props)
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [url, setUrl] = useState('');
 
   useEffect(() => {
     let postRef = db
@@ -17,9 +18,10 @@ function Post(props) {
     postRef
       .get()
       .then((doc) => {
-        let { title, content } = doc.data();
+        let { title, content, url } = doc.data();
         setTitle(title);
         setContent(content);
+        setUrl(url);
       })
   }, [])
 
@@ -31,6 +33,12 @@ function Post(props) {
           title={title}
         />
       </div>
+
+      <img 
+        src={url || 'http://via.placeholder.com/600'} 
+        alt='image' width='600px' 
+        style={{marign: '0 auto'}}
+      />
 
       <div className="post-content-container">
         <Card style={{ marginTop: '20px' }}>

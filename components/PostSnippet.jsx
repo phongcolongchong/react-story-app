@@ -24,7 +24,7 @@ function PostSnippet(props) {
   return (
     <div className="post-snippet-container">
       <Card
-        style={{ marginTop: 16 }} 
+        style={{ marginTop: 32 }} 
         type="inner"
         title={props.title}
         extra={
@@ -46,17 +46,24 @@ function PostSnippet(props) {
           </div>
         }
       >
-        <p className="article-content">
-          {
-            props.content.split('\n').map((paragraph, index) => {
-              return (
-                <p key={index}>
-                  {paragraph}
-                </p>
-              )
-            })
-          }
-        </p>
+        <div className="article-content-container">
+          <img 
+            src={props.url || 'http://via.placeholder.com/300'} 
+            alt='image' width='300px' 
+            style={{marginRight: '20px'}}
+          />
+          <p className="article-content">
+            {
+              props.content.split('\n').map((paragraph, index) => {
+                return (
+                  <p key={index}>
+                    {paragraph}
+                  </p>
+                )
+              })
+            }
+          </p>
+        </div>
       </Card>
     </div>
   );

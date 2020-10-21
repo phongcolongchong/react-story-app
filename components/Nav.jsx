@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
-import { Menu } from 'antd';
-import { ReadOutlined, FormOutlined } from '@ant-design/icons';
+import { Menu, Avatar } from 'antd';
+import { ReadOutlined, FormOutlined, UserOutlined } from '@ant-design/icons';
 
 function Nav(props) {
   return (
@@ -21,7 +21,10 @@ function Nav(props) {
         { 
           (!props.user)
             ? <Link to={"/sign_in"} style={{float: 'right'}}>Sign In</Link>
-            : <a style={{float: 'right'}} onClick={() => {props.onSignOut()}}>Sign Out</a>
+            : <div  style={{float: 'right'}}>
+                <Avatar icon={<UserOutlined />} style={{marginRight: '12px'}} />
+                <a onClick={() => {props.onSignOut()}}>Sign Out</a>
+              </div>
         }
       </Menu>
     </div>

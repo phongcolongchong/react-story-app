@@ -46,6 +46,7 @@ function Posts(props) {
               <PostSnippet
                 key={index}
                 id={article.id}
+                url={article.url}
                 title={_.capitalize(article.title)} 
                 // content={article.content.substring(1, 1000)}
                 content={`${article.content.substring(1, 1000)} ...`}

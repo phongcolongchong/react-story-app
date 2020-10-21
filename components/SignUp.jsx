@@ -13,14 +13,16 @@ function SignUp() {
   const onSignUp = () => {
     auth
       .createUserWithEmailAndPassword(email, password)
+      .then(function(result) {
+        navigate(`/stories/${result.user.uid}/posts`);
+      })
       .catch(function(error) {
         console.log("onSignUp -> error", error)
         // Note: need clear fields when there was an error
     });
-
+    
     setEmail('');
     setPassword('');
-    
     console.log("SignUp -> email, password", {email, password})
   }
 

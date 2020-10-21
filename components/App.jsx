@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Router } from '@reach/router';
 import { auth } from '../firebase';
 
@@ -13,14 +13,16 @@ import Nav from './Nav';
 function App() {
   const [user, setUser] = useState(false);
   
-  auth.onAuthStateChanged(function(user) {
-    if (user) {
-      setUser(user);
-      console.log("user signed in ", user)
-    } else {
-      console.log("Have no user sign in")
-    }
-  });
+  useEffect(() => {
+    auth.onAuthStateChanged(function(user) {
+      if (user) {
+        setUser(user);
+        console.log("user signed in ", user)
+      } else {
+        console.log("Have no user sign in")
+      }
+    });
+  }, []);
 
   const onSignOut = () => {
     auth.signOut().then(function() {
