@@ -70,13 +70,6 @@ function CreatePost(props) {
    
   return (
     <div className="create-post-container">
-      <div className="page-header-container">
-        <PageHeader
-          className="site-page-header"
-          title="Create Post"
-        />
-      </div>
-
       <div className="post-inputs-container">
         <div className="post-input-container">
           <div className="post-input-title">

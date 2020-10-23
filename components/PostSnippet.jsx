@@ -24,22 +24,21 @@ function PostSnippet(props) {
   return (
     <div className="post-snippet-container">
       <Card
-        style={{ marginTop: 32 }} 
         type="inner"
         title={props.title}
         extra={
           <div className="post-snippet-links" style={{ display: 'flex' }}>
             <Link to={`/stories/${props.uid}/post/${props.id}`} style={{ marginRight: '15px' }}>
-              Read more
+              READ MORE
             </Link>
             {
               (props.user) && 
                 <div className="post-edit-links">
                   <Link to={`/update_post/${props.id}`} style={{ marginRight: '15px' }}>
-                    Edit
+                    EDIT
                   </Link>
                   <a onClick={() => {onPostDelete()}}>
-                    Delete
+                    DELETE
                   </a>
                 </div>
             }
@@ -48,9 +47,9 @@ function PostSnippet(props) {
       >
         <div className="article-content-container">
           <img 
-            src={props.url || 'http://via.placeholder.com/300'} 
-            alt='image' width='300px' 
-            style={{marginRight: '20px'}}
+            src={props.url || 'http://via.placeholder.com/250'} 
+            alt='image'
+            style={{marginRight: '20px', width: '250px', height: '250px'}}
           />
           <p className="article-content">
             {

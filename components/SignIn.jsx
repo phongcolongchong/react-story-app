@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { PageHeader , Input, Button, Form } from 'antd';
+import { Input, Button, Form } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { auth } from '../firebase';
 import { navigate, Link } from "@reach/router";
 
@@ -15,6 +16,7 @@ function SignIn() {
   const onSignIn = (values) => {
     console.log("onSignIn -> values", values)
     const { email, password } = values;
+
     auth
       .signInWithEmailAndPassword(email, password)
       .then(function(result) {
@@ -25,23 +27,34 @@ function SignIn() {
       })
       .catch(function(error) {
         switch (error.code) {
-          case 'auth/wrong-password':
-            signInForm.setFields([{
-              name: 'password',
-              errors: ['The password is invalid']
-            }]);
-          break;
           case 'auth/invalid-email':
-            signInForm.setFields([{
-              name: 'email',
-              errors: ['The email address is badly formatted']
-            }]);
+            signInForm.setFields([
+              {
+                name: 'email',
+                errors: ['The email address is badly formatted']
+              }
+            ]);
           break;
+          case 'auth/user-disabled':
           case 'auth/user-not-found':
-            signInForm.setFields([{
-              name: 'email',
-              errors: ['The account does not exist']
-            }]);
+            signInForm.setFields([
+              {
+                name: 'email',
+                errors: ['The account does not exist']
+              }
+            ]);
+          break;
+          case 'auth/wrong-password':
+            signInForm.setFields([
+              {
+                name: 'email',
+                errors: [''],
+              },
+              {
+                name: 'password',
+                errors: ['The password is invalid']
+              }
+            ]);
           break;
         }
         console.log("onSignIn -> error", error)
@@ -49,50 +62,57 @@ function SignIn() {
   }
 
   return (
-    <div className="sign-up-container">
-      <div className="page-header-container">
-        <PageHeader
-          className="site-page-header"
-          title="Sign In"
-        />
-      </div>
+    <div className="sign-in-container">
+      <div className="sign-in-form-container" >
+        <div className="sign-in-header">
+          SIGN IN
+        </div>
+        
+        <Form
+          name="normal_login"
+          className="login-form"
+          initialValues={{ remember: true }}
+          form={signInForm} 
+          onFinish={(values) => onSignIn(values)}
+        >
+          <Form.Item
+            name="email"
+            rules={[{ required: true, message: 'Please input your Username!' }]}
+          >
+            <Input 
+              size="large"
+              prefix={<UserOutlined className="site-form-item-icon" />} 
+              placeholder="Email"
+              onChange={(e) => {onEmailChange(e)}}
+            />
+          </Form.Item>
 
-      <div className="post-input-container" style={{ marginTop: '20px' }}>
-        <Form form={signInForm} onFinish={(values) => onSignIn(values)}>
-          <div className="post-input-title">
-            <h2>Email</h2>
-          </div>
-          <div className="post-input">
-            <Form.Item name="email">
-              <Input 
-                placeholder="Email" 
-                onChange={(e) => {onEmailChange(e)}}
-              />
-            </Form.Item>
-          </div>
+          <Form.Item
+            name="password"
+            rules={[{ required: true, message: 'Please input your Password!' }]}
+          >
+            <Input
+              size="large"
+              prefix={<LockOutlined className="site-form-item-icon" />}
+              type="password"
+              placeholder="Password"
+              onChange={(e) => {onPasswordChange(e)}}
+            />
+          </Form.Item>
 
-          <div className="post-input-title" style={{ marginTop: '20px' }}>
-            <h2>Password</h2>
-          </div>
-          <div className="post-input">
-            <Form.Item name="password">
-              <Input.Password 
-                placeholder="Password" 
-                onChange={(e) => {onPasswordChange(e)}}
-              />
-            </Form.Item>
-          </div>
-
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+          <Form.Item>
+            <Button 
+              type="primary" 
+              htmlType="submit" 
+              className="login-form-button"
+              size="large"
+            >
+              Log in
+            </Button>
             <div>
-              <Link to={'/sign_up'}>Don't have an account, Sign up</Link>
+              <Link to={'/sign_up'} style={{color: '#0f3e31'}}>Don't have an account, Sign up</Link>
             </div>
-            <div className="post-input-button">
-              <Button type="primary" htmlType="submit" >
-                Sign In
-              </Button>
-            </div>
-          </div>
+          </Form.Item>
         </Form>
       </div>
     </div>

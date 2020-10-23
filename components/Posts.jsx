@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { PageHeader } from 'antd';
 import PostSnippet from './PostSnippet';
 import _ from 'lodash';
 import db from '../firebase';
@@ -32,13 +31,6 @@ function Posts(props) {
 
   return (
     <div className="posts-container">
-      <div className="page-header-container">
-        <PageHeader
-          className="site-page-header"
-          title="Posts"
-        />
-      </div>
-
       <div className="articles-container">
         {
           _.map(posts, (article, index) => {
@@ -49,7 +41,7 @@ function Posts(props) {
                 url={article.url}
                 title={_.capitalize(article.title)} 
                 // content={article.content.substring(1, 1000)}
-                content={`${article.content.substring(1, 1000)} ...`}
+                content={`${article.content.substring(1, 600)} ...`}
                 user={props.user}
                 uid={props.uid}
               />
