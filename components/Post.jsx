@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PageHeader, Card } from 'antd';
+import { Card } from 'antd';
 import db from '../firebase';
 
 function Post(props) {
@@ -27,21 +27,17 @@ function Post(props) {
 
   return (
     <div className="post-container">
-      <div className="page-header-container">
-        <PageHeader
-          className="site-page-header"
-          title={title}
-        />
+      <div className="post-title">
+        <h2>{title}</h2>
       </div>
 
       <img 
         src={url || 'http://via.placeholder.com/600'} 
-        alt='image' width='600px' 
-        style={{marign: '0 auto'}}
+        alt='image' 
       />
 
       <div className="post-content-container">
-        <Card style={{ marginTop: '20px' }}>
+        <Card className="post-card-container">
           {
             content.split('\n').map((paragraph, index) => {
               return (

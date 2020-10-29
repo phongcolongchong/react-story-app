@@ -84,75 +84,84 @@ function UpdatePost(props) {
   }
    
   return (
-    <div className="create-post-container">
-      <div className="page-header-container">
-        <PageHeader
-          className="site-page-header"
-          title="Edit Post"
-        />
+    <div className="edit-post-container">
+      <div className="edit-post-title">
+        <h2>Edit Post</h2>
       </div>
 
-      <div className="post-inputs-container">
-        <div className="post-input-container">
-          <div className="post-input-title">
-            <h2>Post Title</h2>
-          </div>
-          <div className="post-input">
-            <Input 
-              placeholder="Post title" 
-              value={title} 
-              onChange={(e) => onTitleChange(e)} 
-            />
-          </div>
-        </div>
-
-        <div className="post-input-container">
-          <div className="post-input-title">
-            <h2>Post Content</h2>
-          </div>
-          <div className="post-input">
-            <TextArea 
-              rows={10} 
-              value={content}
-              onChange={(e) => onContentChange(e)}
-            />
-          </div>
-        </div>
-
-        <div className="post-input-container">
-          <div className="post-input-title">
-            <h2>Post Image</h2>
-          </div>
-
-          <img 
-            src={url || 'http://via.placeholder.com/300'} 
-            alt='image' width='300px' 
-            style={{marginRight: '20px'}}
-          />
-
-          <div className="post-input-image">
+      <div className="edit-main-container">
+        <div className="post-inputs-container">
+          <div className="post-input-container">
+            <div className="post-input-title">
+              <h4>Post Title:</h4>
+            </div>
             <div className="post-input">
-              <input 
-                type="file"
-                onChange={(e) => onImageChange(e)} 
+              <Input 
+                placeholder="Post title" 
+                value={title} 
+                onChange={(e) => onTitleChange(e)} 
               />
             </div>
-            <div style={{ marginRight: '20px' }}>
-              <Progress type="circle" percent={progress} width={80} max='100' />
+          </div>
+
+          <div className="post-input-container">
+            <div className="post-input-title">
+              <h4>Post Content:</h4>
             </div>
-            <div className="post-input-button">
-              <Button type="primary" onClick={() => onImageUpload()}>
-                Upload
-              </Button>
+            <div className="post-input">
+              <TextArea 
+                rows={10} 
+                value={content}
+                onChange={(e) => onContentChange(e)}
+              />
             </div>
+          </div>
+
+          <div className="post-input-container">
+            <div className="post-input-title">
+              <h4>Post Image:</h4>
+            </div>
+
+            <img 
+              src={url || 'http://via.placeholder.com/300'} 
+              alt='image' width='300px' 
+              style={{marginBottom: '20px'}}
+            />
+
+            <div className="post-input-image">
+              <div className="post-input">
+                <input 
+                  type="file"
+                  onChange={(e) => onImageChange(e)} 
+                />
+              </div>
+              <div style={{ marginRight: '20px' }}>
+                <Progress type="circle" percent={progress} width={80} max='100' />
+              </div>
+              <div>
+                <Button 
+                  type="primary" 
+                  className="post-input-button"
+                  onClick={() => onImageUpload()}
+                >
+                  Upload
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <Button 
+              type="primary" 
+              className="post-input-button"
+              onClick={() => onEditPost()}
+            >
+              Edit Post
+            </Button>
           </div>
         </div>
 
-        <div className="post-input-button">
-          <Button type="primary" onClick={() => onEditPost()}>
-            Edit Post
-          </Button>
-        </div>
+        <div className="edit-post-cover-image"></div>
       </div>
     </div>
   );

@@ -16,15 +16,35 @@ function Posts(props) {
         let postData = await posts.docs.map(post => {
           let data = post.data();
           let { id } = post;
-  
+          
           let payload = {
             id,
             ...data
           };
-
+          
           return payload;
         });
-
+        
+        console.log("Posts -> postData", postData)
+        setPosts(postData);
+      })
+    db.collection('users')
+      .doc(userId)
+      .collection('posts')
+      .onSnapshot(async posts => {
+        let postData = await posts.docs.map(post => {
+          let data = post.data();
+          let { id } = post;
+          
+          let payload = {
+            id,
+            ...data
+          };
+          
+          return payload;
+        });
+        
+        console.log("Posts -> postData", postData)
         setPosts(postData);
       })
   }, []);
@@ -39,27 +59,15 @@ function Posts(props) {
                 key={index}
                 id={article.id}
                 url={article.url}
-                title={_.capitalize(article.title)} 
-                // content={article.content.substring(1, 1000)}
+                title={article.title} 
                 content={`${article.content.substring(1, 600)} ...`}
+                now={article.now}
                 user={props.user}
                 uid={props.uid}
               />
             )
           })
         }
-        {/* {
-          posts.map((article, index) => {
-            return (
-              <PostSnippet 
-                key={index}
-                id={article.id}
-                title={article.title} 
-                content={article.content.substring(1, 1000)} 
-              />
-            )
-          })
-        } */}
       </div>
     </div>
   );

@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
-import { PageHeader, Input, Button, Progress } from 'antd';
+import { Input, Button, Progress } from 'antd';
 import db from '../firebase';
 import { storage } from '../firebase';
 import { navigate } from "@reach/router";
 
+import moment from 'moment';
+moment().format();
+
 const { TextArea } = Input;
 
 function CreatePost(props) {
-  console.log("CreatePost -> props", props)
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState('');
   const [progress, setProgress] = useState(0);
+  // const [love, setLove] = useState(0);
+
 
   const onTitleChange = (e) => setTitle(e.target.value);
   const onContentChange = (e) => setContent(e.target.value);
@@ -47,14 +51,15 @@ function CreatePost(props) {
       }
     )
   }
-
+  
   const onCreatePost = () => {
     let postRef = db
-      .collection('users')
-      .doc(props.user.uid)
-      .collection('posts');
-
-    let payload = {title, content, url};
+    .collection('users')
+    .doc(props.user.uid)
+    .collection('posts');
+    
+    // let now = moment();
+    let payload = {title, content, url };
 
     postRef
       .add(payload)
@@ -73,7 +78,7 @@ function CreatePost(props) {
       <div className="post-inputs-container">
         <div className="post-input-container">
           <div className="post-input-title">
-            <h2>Post Title</h2>
+            <h4>Post Title:</h4>
           </div>
           <div className="post-input">
             <Input 
@@ -86,7 +91,7 @@ function CreatePost(props) {
 
         <div className="post-input-container">
           <div className="post-input-title">
-            <h2>Post Content</h2>
+            <h4>Post Content:</h4>
           </div>
           <div className="post-input">
             <TextArea 
@@ -99,7 +104,7 @@ function CreatePost(props) {
 
         <div className="post-input-container">
           <div className="post-input-title">
-            <h2>Post Image</h2>
+            <h4>Post Image:</h4>
           </div>
           
           {/* <progress value={progress} max='100' /> */}
@@ -113,20 +118,30 @@ function CreatePost(props) {
             <div style={{ marginRight: '20px' }}>
               <Progress type="circle" percent={progress} width={80} max='100' />
             </div>
-            <div className="post-input-button">
-              <Button type="primary" onClick={() => onImageUpload()}>
+            <div>
+              <Button 
+                type="primary" 
+                className="post-input-button"
+                onClick={() => onImageUpload()}
+              >
                 Upload
               </Button>
             </div>
           </div>
         </div>
 
-        <div className="post-input-button">
-          <Button type="primary" onClick={() => onCreatePost()}>
+        <div>
+          <Button 
+            type="primary" 
+            className="post-input-button"
+            onClick={() => onCreatePost()}
+          >
             Create Post
           </Button>
         </div>
       </div>
+
+      <div className="create-post-cover-image"></div>
     </div>
   );
 }

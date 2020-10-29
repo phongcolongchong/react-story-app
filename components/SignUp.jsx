@@ -168,7 +168,7 @@ function SignUp() {
             {...tailFormItemLayout}
           >
             <Checkbox>
-              I have read the <Link to={'/sign_up'} style={{color: '#0f3e31'}}>agreement</Link>
+              I have read the <Link to={'/sign_up'} style={{color: '#607D8B'}}>agreement</Link>
             </Checkbox>
           </Form.Item>
           <Form.Item {...tailFormItemLayout}>

@@ -110,7 +110,7 @@ function SignIn() {
               Log in
             </Button>
             <div>
-              <Link to={'/sign_up'} style={{color: '#0f3e31'}}>Don't have an account, Sign up</Link>
+              <Link to={'/sign_up'} style={{color: '#607D8B'}}>Don't have an account, Sign up</Link>
             </div>
           </Form.Item>
         </Form>
