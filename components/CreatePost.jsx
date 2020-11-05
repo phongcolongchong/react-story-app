@@ -4,8 +4,8 @@ import db from '../firebase';
 import { storage } from '../firebase';
 import { navigate } from "@reach/router";
 
-import moment from 'moment';
-moment().format();
+// import moment from 'moment';
+// moment().format();
 
 const { TextArea } = Input;
 
@@ -15,8 +15,6 @@ function CreatePost(props) {
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState('');
   const [progress, setProgress] = useState(0);
-  // const [love, setLove] = useState(0);
-
 
   const onTitleChange = (e) => setTitle(e.target.value);
   const onContentChange = (e) => setContent(e.target.value);
@@ -59,7 +57,7 @@ function CreatePost(props) {
     .collection('posts');
     
     // let now = moment();
-    let payload = {title, content, url };
+    let payload = {title, content, url, loveCount: 0 };
 
     postRef
       .add(payload)
@@ -69,7 +67,7 @@ function CreatePost(props) {
     
     setTitle('');
     setContent('');
-    console.log('title, content: ', {title, content, url} )
+    console.log('title, content, url: ', {title, content, url} );
     navigate(`/stories/${props.user.uid}/posts`);
   }
    
@@ -115,7 +113,7 @@ function CreatePost(props) {
                 onChange={(e) => onImageChange(e)} 
               />
             </div>
-            <div style={{ marginRight: '20px' }}>
+            <div className="post-progress" >
               <Progress type="circle" percent={progress} width={80} max='100' />
             </div>
             <div>

@@ -82,6 +82,10 @@ html, body {
   align-items: center;
 }
 
+.post-progress {
+  margin-right: 20px;
+}
+
 .create-post-cover-image {
   width: 35%;
   margin-left: 5%;
@@ -148,8 +152,27 @@ html, body {
   margin-right: 20px;
 }
 
+.article-content-love {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .article-content {
   color: #48575e;
+}
+
+.article-love {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.love {
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
+  color: red;
 }
 
 /* ========== SIGN UP ========== */
@@ -244,7 +267,8 @@ html, body {
 }
 
 @media only screen and (max-width: 768px) {
-  /* ========== POST RES ========== */
+
+  /* ========== POST RES 768px ========== */
 
   .post-container img {
     width: 100%;
@@ -254,7 +278,7 @@ html, body {
     padding: 20px;
   }
 
-  /* ========== CREATE POST RES ========== */
+  /* ========== CREATE POST RES 768px ========== */
 
   .post-inputs-container {
     width: 100%;
@@ -264,13 +288,13 @@ html, body {
     display: none;
   }
 
-  /* ========== UPDATE POST RES ========== */
+  /* ========== UPDATE POST RES 768px ========== */
 
   .edit-post-cover-image {
     display: none;
   }
 
-  /* ========== POST SNIPPET RES ========== */
+  /* ========== POST SNIPPET RES 768px ========== */
 
   .article-content-container {
     display: flex;
@@ -281,5 +305,46 @@ html, body {
     width: 100%;
     height: 100%;
     margin-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+
+  /* ========== NAV RES 480px ========== */
+
+  .menu-item {
+    margin-left: 0px !important;
+  }
+
+  .nav-link {
+    display: none;
+  }
+  
+  /* ========== SIGN UP RES 480px ========== */
+
+  .sign-up-form-container {
+    right: calc((100vw - 332px)/2);
+  }
+
+  /* ========== SIGN IN RES 480px ========== */
+
+  .sign-in-form-container {
+    right: calc((100vw - 332px)/2);
+  }
+
+  /* ========== POST RES 480px ========== */
+
+  .post-card-container {
+    padding: 0;
+  }
+
+  /* ========== CREATE POST RES 480px ========== */
+
+  .post-input-image {
+    display: block;
+  }
+
+  .post-progress {
+    margin: 20px 0;
   }
 }

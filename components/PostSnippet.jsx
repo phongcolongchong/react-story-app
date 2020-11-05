@@ -52,22 +52,26 @@ function PostSnippet(props) {
             <img 
               src={props.url || 'http://via.placeholder.com/250'} 
               alt='image'
-              // style={{marginRight: '20px', width: '250px', height: '250px'}}
             />
-            <p className="article-content">
-              {
-                props.content.split('\n').map((paragraph, index) => {
-                  return (
-                    <p key={index}>
-                      {paragraph}
-                    </p>
-                  )
-                })
-              }
-            </p>
+            <div className="article-content-love">
+              <p className="article-content">
+                {
+                  props.content.split('\n').map((paragraph, index) => {
+                    return (
+                      <p key={index}>
+                        {paragraph}
+                      </p>
+                    )
+                  })
+                }
+              </p>
+              <div className="article-love">
+                {props.loveCount}
+                <HeartFilled className="love" /> 
+              </div>
+            </div>
           </div>
-            {/* {moment().startOf(props.now).fromNow()}
-            <HeartFilled style={{color: 'red'}} />  */}
+            {/* {moment().startOf(props.now).fromNow()} */}
         </Card>
       </div>
     </Link>

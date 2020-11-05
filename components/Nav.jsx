@@ -12,22 +12,59 @@ function Nav(props) {
           (props.user) &&
             <>
               <Menu.Item key="logo" id="logo">
-                <Link to={`/stories/${props.user.uid}/posts`} style={{color: '#126149'}}>StoryApp</Link>
+                <Link 
+                  to={`/stories/${props.user.uid}/posts`} 
+                  style={{color: '#126149'}}
+                >
+                  StoryApp
+                </Link>
               </Menu.Item>
-              <Menu.Item key="posts" icon={<ReadOutlined />} style={{color: '#126149'}}>
-                <Link to={`/stories/${props.user.uid}/posts`} style={{color: '#126149'}}>POSTS</Link>
+              <Menu.Item 
+                key="posts" 
+                icon={<ReadOutlined />} 
+                style={{color: '#126149'}} 
+                className="menu-item"
+              >
+                <Link 
+                  to={`/stories/${props.user.uid}/posts`} 
+                  style={{color: '#126149'}} 
+                  className="nav-link"
+                >
+                  POSTS
+                </Link>
               </Menu.Item>
-              <Menu.Item key="create_post" icon={<FormOutlined />} style={{color: '#126149'}}>
-                <Link to={"/create_post"} style={{color: '#126149'}}>CREATE POST</Link>
+              <Menu.Item 
+                key="create_post" 
+                icon={<FormOutlined />} 
+                style={{color: '#126149'}} 
+                className="menu-item"
+              >
+                <Link 
+                  to={"/create_post"} 
+                  style={{color: '#126149'}} 
+                  className="nav-link"
+                >
+                  CREATE POST
+                </Link>
               </Menu.Item>
             </>
         }
         { 
           (!props.user)
-            ? <Link to={"/sign_in"} style={{float: 'right', marginRight: '12px', color: '#126149'}}>SIGN IN</Link>
+            ? <Link 
+                to={"/sign_in"} 
+                style={{float: 'right', marginRight: '12px', color: '#126149'}}
+              >
+                SIGN IN
+              </Link>
             : <div  style={{float: 'right'}}>
                 <Avatar icon={<UserOutlined />} style={{marginRight: '12px', color: '#126149'}} />
-                <a onClick={() => {props.onSignOut()}} style={{marginRight: '12px', color: '#126149'}}>SIGN OUT</a>
+                <a 
+                  onClick={() => {props.onSignOut()}} 
+                  style={{marginRight: '20px', color: '#126149'}}
+                >
+                  SIGN OUT
+                </a>
               </div>
         }
       </Menu>

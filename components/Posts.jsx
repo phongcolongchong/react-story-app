@@ -28,25 +28,6 @@ function Posts(props) {
         console.log("Posts -> postData", postData)
         setPosts(postData);
       })
-    db.collection('users')
-      .doc(userId)
-      .collection('posts')
-      .onSnapshot(async posts => {
-        let postData = await posts.docs.map(post => {
-          let data = post.data();
-          let { id } = post;
-          
-          let payload = {
-            id,
-            ...data
-          };
-          
-          return payload;
-        });
-        
-        console.log("Posts -> postData", postData)
-        setPosts(postData);
-      })
   }, []);
 
   return (
@@ -62,6 +43,7 @@ function Posts(props) {
                 title={article.title} 
                 content={`${article.content.substring(1, 600)} ...`}
                 now={article.now}
+                loveCount={article.loveCount}
                 user={props.user}
                 uid={props.uid}
               />

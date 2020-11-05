@@ -135,7 +135,7 @@ function UpdatePost(props) {
                   onChange={(e) => onImageChange(e)} 
                 />
               </div>
-              <div style={{ marginRight: '20px' }}>
+              <div className="post-progress">
                 <Progress type="circle" percent={progress} width={80} max='100' />
               </div>
               <div>

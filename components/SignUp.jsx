@@ -183,39 +183,6 @@ function SignUp() {
           </Form.Item>
         </Form>
       </div>
-
-      {/* <div className="post-input-container" style={{ marginTop: '20px' }}>
-        <div className="post-input-title">
-          <h2>Email</h2>
-        </div>
-        <div className="post-input">
-          <Input 
-            placeholder="Email" 
-            onChange={(e) => {onEmailChange(e)}}
-          />
-        </div>
-
-        <div className="post-input-title" style={{ marginTop: '20px' }}>
-          <h2>Password</h2>
-        </div>
-        <div className="post-input">
-          <Input.Password 
-            placeholder="Password" 
-            onChange={(e) => {onPasswordChange(e)}}
-          />
-        </div>
-
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
-          <div>
-            <Link to={'/sign_in'}>Already have an account, Sign in</Link>
-          </div>
-          <div className="post-input-button">
-            <Button type="primary" onClick={() => {onSignUp()}}>
-              Sign Up
-            </Button>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 }
