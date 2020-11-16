@@ -4,7 +4,8 @@ import {
   Button,
   Select,
   Checkbox,
-  Form 
+  Form ,
+  notification
 } from 'antd';
 
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -27,6 +28,14 @@ const tailFormItemLayout = {
 };
 
 function SignUp() {
+  const openNotificationWithIcon = type => {
+    notification[type]({
+      message: 'Sign up successful',
+      description:
+        'Welcome to Story App!',
+    });
+  };
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -45,15 +54,43 @@ function SignUp() {
     </Form.Item>
   );
   
-  const onSignUp = () => {
+  const onSignUp = (values) => {
+    const { email, password } = values;
+
     auth
       .createUserWithEmailAndPassword(email, password)
       .then(function(result) {
         navigate(`/stories/${result.user.uid}/posts`);
+        openNotificationWithIcon('success');
       })
       .catch(function(error) {
+        switch (error.code) {
+          case 'auth/email-already-in-use':
+            signUpForm.setFields([
+              {
+                name: 'email',
+                errors: ['The email address is already exist']
+              }
+            ]);
+          break;
+          case 'auth/invalid-email':
+            signUpForm.setFields([
+              {
+                name: 'email',
+                errors: ['The email address is badly formatte']
+              }
+            ]);
+          break;
+          case 'auth/weak-password':
+            signUpForm.setFields([
+              {
+                name: 'password',
+                errors: ['The password is too weak']
+              }
+            ]);
+          break;
+        }
         console.log("onSignUp -> error", error)
-        // Note: need clear fields when there was an error
     });
     
     setEmail('');
@@ -73,7 +110,7 @@ function SignUp() {
           className="signup-form"
           form={signUpForm}
           name="register"
-          onFinish={onSignUp}
+          onFinish={(values) => onSignUp(values)}
           initialValues={{
             prefix: '84',
           }}

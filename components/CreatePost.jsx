@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, Button, Progress } from 'antd';
+import { Input, Button, Progress, notification } from 'antd';
 import db from '../firebase';
 import { storage } from '../firebase';
 import { navigate } from "@reach/router";
@@ -10,6 +10,12 @@ import { navigate } from "@reach/router";
 const { TextArea } = Input;
 
 function CreatePost(props) {
+  const openNotificationWithIcon = type => {
+    notification[type]({
+      message: 'Create post successful'
+    });
+  };
+
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
@@ -69,6 +75,7 @@ function CreatePost(props) {
     setContent('');
     console.log('title, content, url: ', {title, content, url} );
     navigate(`/stories/${props.user.uid}/posts`);
+    openNotificationWithIcon('success');
   }
    
   return (

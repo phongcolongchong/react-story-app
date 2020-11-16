@@ -1,13 +1,16 @@
 import React from 'react';
-import { Card } from 'antd';
+import { Card, notification } from 'antd';
 import { HeartFilled } from '@ant-design/icons';
 import { Link } from '@reach/router';
 import db from '../firebase';
 
-import moment from 'moment';
-moment().format();
-
 function PostSnippet(props) {
+  const openNotificationWithIcon = type => {
+    notification[type]({
+      message: 'Delete post successful'
+    });
+  };
+
   const onPostDelete = (e) => {
     e.preventDefault();
     let docRef = db
@@ -23,6 +26,8 @@ function PostSnippet(props) {
       .catch(function(error) {
         console.error("Error removing document: ", error);
       });
+      
+    openNotificationWithIcon('success');
   }
 
   return (
@@ -71,7 +76,6 @@ function PostSnippet(props) {
               </div>
             </div>
           </div>
-            {/* {moment().startOf(props.now).fromNow()} */}
         </Card>
       </div>
     </Link>

@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
-import { Input, Button, Form } from 'antd';
+import { Input, Button, Form, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { auth } from '../firebase';
 import { navigate, Link } from "@reach/router";
 
 function SignIn() {
+  const openNotificationWithIcon = type => {
+    notification[type]({
+      message: 'Sign in successful',
+      description:
+        'Welcome to Story App!',
+    });
+  };
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,8 +28,9 @@ function SignIn() {
     auth
       .signInWithEmailAndPassword(email, password)
       .then(function(result) {
-        console.log("onSignIn -> result", result)  
+        console.log("onSignIn -> result", result);
         navigate(`/stories/${result.user.uid}/posts`);
+        openNotificationWithIcon('success');
         setEmail('');
         setPassword('');
       })

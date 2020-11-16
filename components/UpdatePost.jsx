@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PageHeader, Input, Button, Progress } from 'antd';
+import { Input, Button, Progress, notification } from 'antd';
 import db from '../firebase';
 import { storage } from '../firebase';
 import { navigate } from "@reach/router";
@@ -8,6 +8,12 @@ const { TextArea } = Input;
 
 function UpdatePost(props) {
   console.log("UpdatePost -> props", props)
+  const openNotificationWithIcon = type => {
+    notification[type]({
+      message: 'Update post successful'
+    });
+  };
+
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
@@ -81,6 +87,7 @@ function UpdatePost(props) {
       })
     
     navigate(`/stories/${props.user.uid}/posts`);
+    openNotificationWithIcon('success');
   }
    
   return (
@@ -156,7 +163,7 @@ function UpdatePost(props) {
               className="post-input-button"
               onClick={() => onEditPost()}
             >
-              Edit Post
+              Update Post
             </Button>
           </div>
         </div>
