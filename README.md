@@ -1,9 +1,9 @@
-![alt text](http://url/to/img.png?raw=true)
+![logo](https://github.com/phongcolongchong/react-story-app/blob/master/images/logo.png?raw=true)
 
 Story App is a web app that allows users to create their own stories and share them with friends by sharing the URLs of their story.
 Check it out for yourself at [react-story-app.firebaseapp.com](https://react-story-app.firebaseapp.com/)!
 
-![alt text](http://url/to/img.png?raw=true)
+![screenshot1](https://github.com/phongcolongchong/react-story-app/blob/master/images/screen-shot-1.png?raw=true)
 
 ## What is Story App about?
 
